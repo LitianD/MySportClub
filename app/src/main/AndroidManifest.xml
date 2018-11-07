@@ -19,8 +19,7 @@
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/Translucent" />
-
+        <activity android:name=".HomeActivity"></activity>
     </application>
-
 
 </manifest>

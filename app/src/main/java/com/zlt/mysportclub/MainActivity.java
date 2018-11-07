@@ -14,8 +14,8 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText etUsername;
-    private EditText etPassword;
+    private EditText Username;
+    private EditText Password;
     private Button btGo;
     private CardView cv;
     private FloatingActionButton fab;
@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        etUsername = findViewById(R.id.et_username);
-        etPassword = findViewById(R.id.et_password);
+        Username = findViewById(R.id.et_username);
+        Password = findViewById(R.id.et_password);
         btGo = findViewById(R.id.bt_go);
         cv = findViewById(R.id.cv);
         fab = findViewById(R.id.fab);
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 getWindow().setExitTransition(explode);
                 getWindow().setEnterTransition(explode);
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
-                Intent i2 = new Intent(MainActivity.this,RegisterActivity.class);
+                Intent i2 = new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(i2, oc2.toBundle());
             }
         });
