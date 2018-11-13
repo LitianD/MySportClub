@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText Username;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btGo;
     private CardView cv;
     private FloatingActionButton fab;
+    private AVLoadingIndicatorView avi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +37,17 @@ public class MainActivity extends AppCompatActivity {
         btGo = findViewById(R.id.bt_go);
         cv = findViewById(R.id.cv);
         fab = findViewById(R.id.fab);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.hide();
     }
 
     private void setListener() {
         btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                avi.show();
                 Explode explode = new Explode();
                 explode.setDuration(500);
-
                 getWindow().setExitTransition(explode);
                 getWindow().setEnterTransition(explode);
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
