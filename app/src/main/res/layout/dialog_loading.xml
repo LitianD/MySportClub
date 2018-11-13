@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_loading_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +9,7 @@
     <LinearLayout
         android:layout_width="150dp"
         android:layout_height="110dp"
+        android:background="@drawable/loading_bg"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="10dp"
@@ -17,12 +17,15 @@
         android:paddingRight="21dp"
         android:paddingTop="10dp">
 
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id = "@+id/progressBar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="BallPulseIndicator"
-            />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/dialog_loading"
+            android:indeterminateOnly="true" />
+
         <TextView
             android:id="@+id/tipTextView"
             android:layout_width="wrap_content"
