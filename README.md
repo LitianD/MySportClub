@@ -1,3 +1,4 @@
 # MySportClub
-android project
- aaaaaa
+## 小组成员 张力天16301168 朱子潇 莫日根呼
+### 第一二次安卓作业由ommit记录提交可知
+### 有三个分支branch 每个人都在自己分支工作由组长检查合并
