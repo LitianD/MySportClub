@@ -1,6 +1,8 @@
 package com.zlt.mysportclub;
 
+import android.app.Fragment;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebViewFragment;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,9 +46,27 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public Object instantiateItem(final ViewGroup container, final int position) {
-                final View view = LayoutInflater.from(
-                        getBaseContext()).inflate(R.layout.item_vp, null, false);
-
+                final View view;
+                if(position==0){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp0, null, false);
+                }else if(position==1){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp1, null, false);
+                }else if(position==2){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp2, null, false);
+                    final TextView t1 =(TextView) view.findViewById(R.id.dip_name);
+                    final TextView t2 = (TextView) view.findViewById(R.id.dip_email);
+                    t1.setText(String.format("zhang,litian"));
+                    t2.setText(String.format("xxx@bjtu.edu.cn"));
+                }else if(position==3){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp3, null, false);
+                }else{
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp4, null, false);
+                }
                 final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
                 txtPage.setText(String.format("Page #%d", position));
 

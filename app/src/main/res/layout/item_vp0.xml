@@ -12,38 +12,35 @@
         android:layout_weight="1"
         android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:text="Navigation"
-        android:textColor="#9b92b3"
-        android:textStyle="bold"/>
+        android:text="运动量：                     xx卡路里"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:text="Tab"
-        android:textColor="#9b92b3"
-        android:textStyle="bold"/>
+        android:text="步行+跑步距离：                     xx公里"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:text="Bar"
-        android:textColor="#9b92b3"
-        android:textStyle="bold"/>
+        android:text="步数：               xx步"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt_vp_item_page"
@@ -55,6 +52,6 @@
         android:gravity="center"
         android:text="Page"
         android:textColor="#9b92b3"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>
