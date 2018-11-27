@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Username = findViewById(R.id.et_username);
-        Password = findViewById(R.id.et_password);
-        btGo = findViewById(R.id.bt_go);
+        Username = findViewById(R.id.et_username1);
+        Password = findViewById(R.id.et_password1);
+        btGo = (Button)findViewById(R.id.bt_go1);
         cv = findViewById(R.id.cv);
         fab = findViewById(R.id.fab);
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
@@ -86,28 +86,30 @@ public class MainActivity extends AppCompatActivity {
         btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent i3 = new Intent();
-                i3.setClass(MainActivity.this,HomeActivity.class);
-                startActivity(i3);
+                Explode explode = new Explode();
+                explode.setDuration(500);
+                getWindow().setExitTransition(explode);
+                getWindow().setEnterTransition(explode);
+                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
+                Intent i2 = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(i2, oc2.toBundle());
+//                boolean control = excuteLogin();
+//                if(!control) {
 //
-                boolean control =  excuteLogin();
-                if(!control) {
-
-                    Intent i2 = new Intent();
-                    i2.setClass(MainActivity.this,HomeActivity.class);
-                    startActivity(i2);
-                }
-                else
-                {
-                    Explode explode = new Explode();
-                    explode.setDuration(500);
-                    getWindow().setExitTransition(explode);
-                    getWindow().setEnterTransition(explode);
-                    ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
-                    Intent i2 = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(i2, oc2.toBundle());
-                }
+//                    Intent i2 = new Intent();
+//                    i2.setClass(MainActivity.this,HomeActivity.class);
+//                    startActivity(i2);
+//                }
+//                else
+//                {
+//                    Explode explode = new Explode();
+//                    explode.setDuration(500);
+//                    getWindow().setExitTransition(explode);
+//                    getWindow().setEnterTransition(explode);
+//                    ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
+//                    Intent i2 = new Intent(MainActivity.this, HomeActivity.class);
+//                    startActivity(i2, oc2.toBundle());
+//                }
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 ifLogin = true;
                 Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG)
                         .show();
-                mHandler.sendEmptyMessage(1);
+//                mHandler.sendEmptyMessage(1);
             }
 
             @Override
