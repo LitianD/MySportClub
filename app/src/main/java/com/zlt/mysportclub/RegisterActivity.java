@@ -62,6 +62,8 @@ public class RegisterActivity extends AppCompatActivity {
         bt_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i2 = new Intent(RegisterActivity.this, HomeActivity.class);
+                startActivity(i2);
                 excuteRegister();
 
             }
