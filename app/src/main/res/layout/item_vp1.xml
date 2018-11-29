@@ -5,6 +5,14 @@
               android:orientation="vertical"
               android:weightSum="4">
 
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="导航" />
+
     <TextView
         android:id="@+id/txt_vp_item_page"
         android:layout_width="match_parent"
@@ -15,6 +23,6 @@
         android:gravity="center"
         android:text="Page"
         android:textColor="#9b92b3"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

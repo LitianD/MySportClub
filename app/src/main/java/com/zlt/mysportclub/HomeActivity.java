@@ -1,6 +1,7 @@
 package com.zlt.mysportclub;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -15,9 +16,12 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebViewFragment;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
+import com.baidu.mapapi.SDKInitializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,15 +34,17 @@ public class HomeActivity extends AppCompatActivity {
     private MediaPlayer player;
     private SurfaceHolder holder;
     private ProgressBar progressBar;
+    private int k=2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
+        SDKInitializer.initialize(getApplicationContext());
         //initVideo();
     }
 
-    private void initVideo(){
+    /*private void initVideo(){
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
         //视频链接可能已失效
@@ -62,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    */
     private class MyCallBack implements SurfaceHolder.Callback {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
@@ -100,14 +107,28 @@ public class HomeActivity extends AppCompatActivity {
             public Object instantiateItem(final ViewGroup container, final int position) {
                 final View view;
                 if(position==0){
+                    k=0;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp0, null, false);
                 }else if(position==1){
-
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp1, null, false);
+                    k=1;
+                        Button btn1 = (Button)view.findViewById(R.id.button2);
+                        btn1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //Intent是一种运行时绑定（run-time binding）机制，它能在程序运行过程中连接两个不同的组件。 
+                                //在存放资源代码的文件夹下下， 
+                                Intent i = new Intent(HomeActivity.this, MapActivity.class);
+                                //启动 
+                                startActivity(i);
+                            }
+                        });
+
                     //initVideo();
                 }else if(position==2){
+                    k=2;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp2, null, false);
                     final TextView t1 =(TextView) view.findViewById(R.id.dip_name);
@@ -115,9 +136,11 @@ public class HomeActivity extends AppCompatActivity {
                     t1.setText(String.format("zhang,litian"));
                     t2.setText(String.format("xxx@bjtu.edu.cn"));
                 }else if(position==3){
+                    k=3;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp3, null, false);
                 }else{
+                    k=4;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
                 }
@@ -212,6 +235,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, 500);
-        initVideo();
+        //initVideo();
     }
 }
