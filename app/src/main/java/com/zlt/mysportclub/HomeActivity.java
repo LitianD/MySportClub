@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         //initVideo();
     }
 
-    /*private void initVideo(){
+    private void initVideo(){
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
         //视频链接可能已失效
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    */
+
     private class MyCallBack implements SurfaceHolder.Callback {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
@@ -235,6 +235,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, 500);
-        //initVideo();
+        initVideo();
     }
 }
