@@ -235,6 +235,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, 500);
-        initVideo();
+        //initVideo();
     }
 }
