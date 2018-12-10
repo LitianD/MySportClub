@@ -129,6 +129,8 @@ public class HomeActivity extends AppCompatActivity {
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
                 }
+                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
+                txtPage.setText(String.format("Page #%d", position));
 
                 container.addView(view);
                 return view;
