@@ -50,7 +50,7 @@
         <activity
             android:name=".HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"  />
         <activity android:name=".MapActivity"></activity>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

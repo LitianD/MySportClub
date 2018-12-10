@@ -20,12 +20,13 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.baidu.mapapi.SDKInitializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 import devlight.io.library.ntb.NavigationTabBar;
 
 public class HomeActivity extends AppCompatActivity {
@@ -35,38 +36,19 @@ public class HomeActivity extends AppCompatActivity {
     private SurfaceHolder holder;
     private ProgressBar progressBar;
     private int k=2;
+    private JzvdStd jzvdStd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
         SDKInitializer.initialize(getApplicationContext());
+
+        //("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
         //initVideo();
     }
 
     private void initVideo(){
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        progressBar= (ProgressBar) findViewById(R.id.progressBar);
-        //视频链接可能已失效
-        String uri="http://video.dispatch.tc.qq.com/77613075/x0021o8d3g3.mp4?sdtfrom=v1001&type=mp4&vkey=23289E4B8D0F4B6CF18703222DFD0038845D8F56A75EEC20D5D4FDE678093D9AB211EFD7F4C99E5A612A96A04F46CEEB483628CFFBEA493D3AADBFCB81A540F7A92193874192FA0F70D1099DF330B2B419D45736554CB9BB3435019C985F530C5960E4B20FEBD5FAED17DC9F1FCE1C73&platform=10902&fmt=auto&sp=350&guid=1175defd049d3301e047ce50d93e9c7a";
-
-        player=new MediaPlayer();
-        try {
-            player.setDataSource(this, Uri.parse(uri));
-//            holder=surfaceView.getHolder();
-//            holder.addCallback(new MyCallBack());
-            player.prepare();
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    player.start();
-                    player.setLooping(true);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private class MyCallBack implements SurfaceHolder.Callback {
@@ -135,6 +117,9 @@ public class HomeActivity extends AppCompatActivity {
                     final TextView t2 = (TextView) view.findViewById(R.id.dip_email);
                     t1.setText(String.format("zhang,litian"));
                     t2.setText(String.format("xxx@bjtu.edu.cn"));
+                    jzvdStd = view.findViewById(R.id.videoplayer);
+                    jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
                 }else if(position==3){
                     k=3;
                     view = LayoutInflater.from(
@@ -144,8 +129,6 @@ public class HomeActivity extends AppCompatActivity {
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
                 }
-                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
-                txtPage.setText(String.format("Page #%d", position));
 
                 container.addView(view);
                 return view;
@@ -236,5 +219,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         }, 500);
         //initVideo();
+//        JzvdStd jzvdStd = (JzvdStd) findViewById(R.id.videoplayer);
+//        jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+//                , "饺子闭眼睛", Jzvd.SCREEN_WINDOW_NORMAL);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
     }
 }
