@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.baidu.mapapi.SDKInitializer;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private int k=2;
     private JzvdStd jzvdStd;
+    private JzvdStd jzvdStd1;
+    private JzvdStd jzvdStd2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +123,16 @@ public class HomeActivity extends AppCompatActivity {
                     jzvdStd = view.findViewById(R.id.videoplayer);
                     jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
                             , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+                    jzvdStd1 = view.findViewById(R.id.videoplayer1);
+                    jzvdStd1.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+                    jzvdStd2 = view.findViewById(R.id.videoplayer2);
+                    jzvdStd2.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+                    Uri uri = Uri.parse("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
+                    jzvdStd.thumbImageView.setImageURI(uri);
                 }else if(position==3){
                     k=3;
                     view = LayoutInflater.from(
@@ -129,8 +142,8 @@ public class HomeActivity extends AppCompatActivity {
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
                 }
-                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
-                txtPage.setText(String.format("Page #%d", position));
+//                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
+//                txtPage.setText(String.format("Page #%d", position));
 
                 container.addView(view);
                 return view;

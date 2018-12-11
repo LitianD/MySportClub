@@ -8,16 +8,6 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:background="@color/design_default_color_primary">
-
-    <cn.jzvd.JzvdStd
-        android:id="@+id/videoplayer"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
     <TextView
         android:id="@+id/numText"
         android:layout_width="wrap_content"
@@ -27,6 +17,20 @@
         android:text="燃烧你的卡路里！！！"
         android:textSize="30dp"
         android:textColor="#f00"/>
+    <cn.jzvd.JzvdStd
+        android:id="@+id/videoplayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <cn.jzvd.JzvdStd
+        android:id="@+id/videoplayer1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <cn.jzvd.JzvdStd
+        android:id="@+id/videoplayer2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 
 
     <LinearLayout
