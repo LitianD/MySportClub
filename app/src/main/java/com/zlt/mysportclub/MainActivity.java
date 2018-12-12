@@ -2,6 +2,7 @@ package com.zlt.mysportclub;
 
 import android.app.ActivityOptions;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;

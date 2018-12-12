@@ -1,6 +1,8 @@
 package com.zlt.mysportclub;
 
 import android.app.Fragment;
+import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -8,19 +10,26 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebViewFragment;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.zlt.mysportclub.database.TrainerRepo;
+import com.zlt.mysportclub.model.Trainer;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,11 +49,13 @@ public class HomeActivity extends AppCompatActivity {
     private JzvdStd jzvdStd;
     private JzvdStd jzvdStd1;
     private JzvdStd jzvdStd2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
+
         SDKInitializer.initialize(getApplicationContext());
 
         //("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
@@ -70,6 +81,57 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
+
+    private  AlertDialog.Builder initDialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("添加教练");
+
+        // 取得自定义View
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        final View myLoginView = layoutInflater.inflate(
+                R.layout.dialog, null);
+        dialog.setView(myLoginView);
+
+        dialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText dialog_name = (EditText) myLoginView
+                                .findViewById(R.id.dialog_name);
+                        EditText dialog_phone = (EditText) myLoginView
+                                .findViewById(R.id.dialog_phone);
+                        EditText dialog_position = (EditText) myLoginView
+                                .findViewById(R.id.dialog_position);
+                        EditText dialog_course = (EditText) myLoginView
+                                .findViewById(R.id.dialog_course);
+
+                        TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                        ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                        Trainer trainer = new Trainer();
+                        trainer.name = dialog_name.getText().toString();
+                        trainer.position = dialog_position.getText().toString();
+                        trainer.ID = trainerList.size()+1;
+                        trainer.course = dialog_course.getText().toString();
+                        trainer.phone = dialog_phone.getText().toString();
+                        repo.insert(trainer);
+                    }
+                });
+
+        dialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+        return dialog;
+
+    }
+
     private void initUI() {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.vp_horizontal_ntb);
         viewPager.setAdapter(new PagerAdapter() {
@@ -95,6 +157,36 @@ public class HomeActivity extends AppCompatActivity {
                     k=0;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp0, null, false);
+                    Button showAll = view.findViewById(R.id.btnGetAll);
+                    Button add = view.findViewById(R.id.btnAdd);
+                    ListView mylistview = (ListView)view.findViewById(R.id.list);
+                    TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                    ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                    TrainerAdapter adapter = new TrainerAdapter(HomeActivity.this, R.layout.list_item, trainerList);
+                    mylistview.setAdapter(adapter);
+                    add.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            initDialog().show();
+
+                            //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,studentList);
+                        }
+                    });
+                    showAll.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                            ListView mylistview = (ListView)view.findViewById(R.id.list);
+                            ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                            TrainerAdapter adapter = new TrainerAdapter(HomeActivity.this, R.layout.list_item, trainerList);
+                            mylistview.setAdapter(adapter);
+                            //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,studentList);
+                        }
+                    });
+
+
+
                 }else if(position==1){
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp1, null, false);
@@ -131,7 +223,7 @@ public class HomeActivity extends AppCompatActivity {
                     jzvdStd2 = view.findViewById(R.id.videoplayer2);
                     jzvdStd2.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
                             , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
-                    Uri uri = Uri.parse("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
+                    Uri uri = Uri.parse("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544527645995&di=de7a5e7a5bd0c08fe5b430aacfc92ffb&imgtype=0&src=http%3A%2F%2Fp1.img.cctvpic.com%2Fphotoworkspace%2Fcontentimg%2F2015%2F05%2F20%2F2015052009401236361.jpg");
                     jzvdStd.thumbImageView.setImageURI(uri);
                 }else if(position==3){
                     k=3;
