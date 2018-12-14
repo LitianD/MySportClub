@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +24,7 @@ import android.webkit.WebViewFragment;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,6 +36,7 @@ import com.zlt.mysportclub.model.Trainer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
@@ -46,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     private SurfaceHolder holder;
     private ProgressBar progressBar;
     private int k=2;
+    private int rand_img=0;
     private JzvdStd jzvdStd;
     private JzvdStd jzvdStd1;
     private JzvdStd jzvdStd2;
@@ -152,6 +156,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public Object instantiateItem(final ViewGroup container, final int position) {
+                final String tel = "18811435290";
                 final View view;
                 if(position==0){
                     k=0;
@@ -190,9 +195,25 @@ public class HomeActivity extends AppCompatActivity {
                 }else if(position==1){
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp1, null, false);
-                    k=1;
-                        Button btn1 = (Button)view.findViewById(R.id.button2);
-                        btn1.setOnClickListener(new View.OnClickListener() {
+                            k=1;
+                            final ImageView img = (ImageView) view.findViewById(R.id.image_random);
+                            img.setImageDrawable(getResources().getDrawable(R.drawable.tomas0));
+                            Button btn0 = (Button)view.findViewById(R.id.btn_tel);
+                            btn0.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    //设置拨打电话的动作
+                                    intent.setAction(Intent.ACTION_CALL);
+                                    //设置拨打电话的号码
+                                    intent.setData(Uri.parse("tel:" + tel));
+                                    //开启打电话的意图
+                                    startActivity(intent);
+                                }
+                            });
+
+                            Button btn1 = (Button)view.findViewById(R.id.button2);
+                            btn1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 //Intent是一种运行时绑定（run-time binding）机制，它能在程序运行过程中连接两个不同的组件。 
@@ -200,7 +221,7 @@ public class HomeActivity extends AppCompatActivity {
                                 Intent i = new Intent(HomeActivity.this, MapActivity.class);
                                 //启动 
                                 startActivity(i);
-                            }
+                                }
                         });
 
                     //initVideo();
@@ -236,7 +257,25 @@ public class HomeActivity extends AppCompatActivity {
                 }
 //                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
 //                txtPage.setText(String.format("Page #%d", position));
+                Random random = new Random();
+                rand_img = random.nextInt(4);
 
+//                final ImageView img = (ImageView) view.findViewById(R.id.image_random);
+//                img = (ImageView) view.findViewById(R.id.image_random);
+//                if(position==1){
+//                    if(rand_img==0) {
+//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas0));
+//                    }
+//                    if(rand_img==1) {
+//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas1));
+//                    }
+//                    if(rand_img==2) {
+//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas2));
+//                    }
+//                    if(rand_img==3) {
+//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas3));
+//                    }
+//                }
                 container.addView(view);
                 return view;
             }
