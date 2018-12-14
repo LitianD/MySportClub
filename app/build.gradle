@@ -46,4 +46,5 @@ dependencies {
     //bmob-im：Bmob的即时通讯包，注意每个版本的im依赖特定版本的bmob-sdk，具体的依赖关系可查看下面注释[2]
     implementation 'cn.bmob.android:bmob-im:2.1.0@aar'
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 }

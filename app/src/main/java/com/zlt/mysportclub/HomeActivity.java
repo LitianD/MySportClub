@@ -1,6 +1,8 @@
 package com.zlt.mysportclub;
 
 import android.app.Fragment;
+import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -8,24 +10,33 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebViewFragment;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import com.baidu.mapapi.SDKInitializer;
+import com.zlt.mysportclub.database.TrainerRepo;
+import com.zlt.mysportclub.model.Trainer;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 import devlight.io.library.ntb.NavigationTabBar;
 
 public class HomeActivity extends AppCompatActivity {
@@ -35,38 +46,23 @@ public class HomeActivity extends AppCompatActivity {
     private SurfaceHolder holder;
     private ProgressBar progressBar;
     private int k=2;
+    private JzvdStd jzvdStd;
+    private JzvdStd jzvdStd1;
+    private JzvdStd jzvdStd2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
+
         SDKInitializer.initialize(getApplicationContext());
+
+        //("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
         //initVideo();
     }
 
     private void initVideo(){
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        progressBar= (ProgressBar) findViewById(R.id.progressBar);
-        //视频链接可能已失效
-        String uri="http://video.dispatch.tc.qq.com/77613075/x0021o8d3g3.mp4?sdtfrom=v1001&type=mp4&vkey=23289E4B8D0F4B6CF18703222DFD0038845D8F56A75EEC20D5D4FDE678093D9AB211EFD7F4C99E5A612A96A04F46CEEB483628CFFBEA493D3AADBFCB81A540F7A92193874192FA0F70D1099DF330B2B419D45736554CB9BB3435019C985F530C5960E4B20FEBD5FAED17DC9F1FCE1C73&platform=10902&fmt=auto&sp=350&guid=1175defd049d3301e047ce50d93e9c7a";
-
-        player=new MediaPlayer();
-        try {
-            player.setDataSource(this, Uri.parse(uri));
-//            holder=surfaceView.getHolder();
-//            holder.addCallback(new MyCallBack());
-            player.prepare();
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    player.start();
-                    player.setLooping(true);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private class MyCallBack implements SurfaceHolder.Callback {
@@ -85,6 +81,57 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
+
+    private  AlertDialog.Builder initDialog()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("添加教练");
+
+        // 取得自定义View
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        final View myLoginView = layoutInflater.inflate(
+                R.layout.dialog, null);
+        dialog.setView(myLoginView);
+
+        dialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText dialog_name = (EditText) myLoginView
+                                .findViewById(R.id.dialog_name);
+                        EditText dialog_phone = (EditText) myLoginView
+                                .findViewById(R.id.dialog_phone);
+                        EditText dialog_position = (EditText) myLoginView
+                                .findViewById(R.id.dialog_position);
+                        EditText dialog_course = (EditText) myLoginView
+                                .findViewById(R.id.dialog_course);
+
+                        TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                        ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                        Trainer trainer = new Trainer();
+                        trainer.name = dialog_name.getText().toString();
+                        trainer.position = dialog_position.getText().toString();
+                        trainer.ID = trainerList.size()+1;
+                        trainer.course = dialog_course.getText().toString();
+                        trainer.phone = dialog_phone.getText().toString();
+                        repo.insert(trainer);
+                    }
+                });
+
+        dialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+        return dialog;
+
+    }
+
     private void initUI() {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.vp_horizontal_ntb);
         viewPager.setAdapter(new PagerAdapter() {
@@ -110,6 +157,36 @@ public class HomeActivity extends AppCompatActivity {
                     k=0;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp0, null, false);
+                    Button showAll = view.findViewById(R.id.btnGetAll);
+                    Button add = view.findViewById(R.id.btnAdd);
+                    ListView mylistview = (ListView)view.findViewById(R.id.list);
+                    TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                    ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                    TrainerAdapter adapter = new TrainerAdapter(HomeActivity.this, R.layout.list_item, trainerList);
+                    mylistview.setAdapter(adapter);
+                    add.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            initDialog().show();
+
+                            //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,studentList);
+                        }
+                    });
+                    showAll.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            TrainerRepo repo = new TrainerRepo(HomeActivity.this);
+                            ListView mylistview = (ListView)view.findViewById(R.id.list);
+                            ArrayList<Trainer> trainerList =  repo.getTrainerList();
+                            TrainerAdapter adapter = new TrainerAdapter(HomeActivity.this, R.layout.list_item, trainerList);
+                            mylistview.setAdapter(adapter);
+                            //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,studentList);
+                        }
+                    });
+
+
+
                 }else if(position==1){
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp1, null, false);
@@ -135,6 +212,19 @@ public class HomeActivity extends AppCompatActivity {
                     final TextView t2 = (TextView) view.findViewById(R.id.dip_email);
                     t1.setText(String.format("zhang,litian"));
                     t2.setText(String.format("xxx@bjtu.edu.cn"));
+                    jzvdStd = view.findViewById(R.id.videoplayer);
+                    jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+                    jzvdStd1 = view.findViewById(R.id.videoplayer1);
+                    jzvdStd1.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+                    jzvdStd2 = view.findViewById(R.id.videoplayer2);
+                    jzvdStd2.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+                    Uri uri = Uri.parse("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544527645995&di=de7a5e7a5bd0c08fe5b430aacfc92ffb&imgtype=0&src=http%3A%2F%2Fp1.img.cctvpic.com%2Fphotoworkspace%2Fcontentimg%2F2015%2F05%2F20%2F2015052009401236361.jpg");
+                    jzvdStd.thumbImageView.setImageURI(uri);
                 }else if(position==3){
                     k=3;
                     view = LayoutInflater.from(
@@ -144,8 +234,8 @@ public class HomeActivity extends AppCompatActivity {
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
                 }
-                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
-                txtPage.setText(String.format("Page #%d", position));
+//                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
+//                txtPage.setText(String.format("Page #%d", position));
 
                 container.addView(view);
                 return view;
@@ -235,6 +325,22 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, 500);
-        initVideo();
+        //initVideo();
+//        JzvdStd jzvdStd = (JzvdStd) findViewById(R.id.videoplayer);
+//        jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+//                , "饺子闭眼睛", Jzvd.SCREEN_WINDOW_NORMAL);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
     }
 }
