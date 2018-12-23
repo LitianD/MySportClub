@@ -13,9 +13,6 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        manifestPlaceholders = [
-                QQ_APPID: '1108047216'
-        ]
     }
     buildTypes {
         release {
@@ -33,6 +30,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    configurations {
+        all*.exclude group: 'com.google.code.gson'
+    }
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
@@ -53,5 +53,9 @@ dependencies {
     //bmob-im：Bmob的即时通讯包，注意每个版本的im依赖特定版本的bmob-sdk，具体的依赖关系可查看下面注释[2]
     implementation 'cn.bmob.android:bmob-im:2.1.0@aar'
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/open_sdk_r5509.jar')
+    implementation files('libs/mta-sdk-1.6.2.jar')
+    implementation files('libs/picasso-2.5.2.jar')
+    implementation files('libs/gson-2.2.4.jar')
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 }
