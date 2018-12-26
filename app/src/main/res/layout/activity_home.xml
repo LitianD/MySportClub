@@ -21,11 +21,11 @@
         app:ntb_badge_gravity="top"
         app:ntb_badge_position="right"
         app:ntb_badged="true"
+        app:ntb_bg_color="#8bcff2"
         app:ntb_scaled="true"
+        app:ntb_swiped="true"
         app:ntb_tinted="true"
         app:ntb_title_mode="all"
-        app:ntb_titled="true"
-        app:ntb_swiped="true"
-        app:ntb_bg_color="#8bcff2" />
+        app:ntb_titled="true" />
 
 </LinearLayout>

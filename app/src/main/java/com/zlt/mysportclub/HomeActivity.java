@@ -1,28 +1,83 @@
 package com.zlt.mysportclub;
 
+import android.app.Fragment;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebViewFragment;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import devlight.io.library.ntb.NavigationTabBar;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private SurfaceView surfaceView;
+    private MediaPlayer player;
+    private SurfaceHolder holder;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
+        //initVideo();
     }
 
+    private void initVideo(){
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+        progressBar= (ProgressBar) findViewById(R.id.progressBar);
+        //视频链接可能已失效
+        String uri="http://video.dispatch.tc.qq.com/77613075/x0021o8d3g3.mp4?sdtfrom=v1001&type=mp4&vkey=23289E4B8D0F4B6CF18703222DFD0038845D8F56A75EEC20D5D4FDE678093D9AB211EFD7F4C99E5A612A96A04F46CEEB483628CFFBEA493D3AADBFCB81A540F7A92193874192FA0F70D1099DF330B2B419D45736554CB9BB3435019C985F530C5960E4B20FEBD5FAED17DC9F1FCE1C73&platform=10902&fmt=auto&sp=350&guid=1175defd049d3301e047ce50d93e9c7a";
+
+        player=new MediaPlayer();
+        try {
+            player.setDataSource(this, Uri.parse(uri));
+//            holder=surfaceView.getHolder();
+//            holder.addCallback(new MyCallBack());
+            player.prepare();
+            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    player.start();
+                    player.setLooping(true);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private class MyCallBack implements SurfaceHolder.Callback {
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+            player.setDisplay(holder);
+        }
+
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+
+        }
+    }
     private void initUI() {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.vp_horizontal_ntb);
         viewPager.setAdapter(new PagerAdapter() {
@@ -43,9 +98,29 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public Object instantiateItem(final ViewGroup container, final int position) {
-                final View view = LayoutInflater.from(
-                        getBaseContext()).inflate(R.layout.item_vp, null, false);
+                final View view;
+                if(position==0){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp0, null, false);
+                }else if(position==1){
 
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp1, null, false);
+                    //initVideo();
+                }else if(position==2){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp2, null, false);
+                    final TextView t1 =(TextView) view.findViewById(R.id.dip_name);
+                    final TextView t2 = (TextView) view.findViewById(R.id.dip_email);
+                    t1.setText(String.format("zhang,litian"));
+                    t2.setText(String.format("xxx@bjtu.edu.cn"));
+                }else if(position==3){
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp3, null, false);
+                }else{
+                    view = LayoutInflater.from(
+                            getBaseContext()).inflate(R.layout.item_vp4, null, false);
+                }
                 final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
                 txtPage.setText(String.format("Page #%d", position));
 
@@ -137,5 +212,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, 500);
+        initVideo();
     }
 }

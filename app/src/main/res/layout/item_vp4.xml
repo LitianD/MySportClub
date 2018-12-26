@@ -5,48 +5,45 @@
               android:orientation="vertical"
               android:weightSum="4">
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/h1_bg"
-        android:gravity="center"
-        android:orientation="horizontal"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
         android:layout_weight="1"
-        android:background="@drawable/h2"
+        android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:orientation="horizontal"
-        />
+        android:text="Tab"
+        android:textColor="#9b92b3"
+        android:textStyle="bold"/>
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
         android:layout_weight="1"
-        android:background="@drawable/h3"
+        android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:orientation="horizontal"/>
+        android:text="Bar4444!"
+        android:textColor="#9b92b3"
+        android:textStyle="bold" />
 
-    <ImageView
+    <TextView
         android:id="@+id/txt_vp_item_page"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:background="@drawable/h4"
+        android:background="@drawable/bg_round_rect"
         android:gravity="center"
-        android:orientation="horizontal"/>
+        android:text="Page"
+        android:textColor="#9b92b3"
+        android:textStyle="bold"/>
+
 </LinearLayout>

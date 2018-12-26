@@ -52,18 +52,18 @@
                 android:textColorHint="#c5c5c5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
-                    android:textSize="18sp"
-                    android:hint="@string/Username"
-                    android:textColor="#2fa881"
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_username1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
                     android:background="@drawable/selector_bg_edit"
-                    android:textCursorDrawable="@drawable/bg_input_cursor"
+                    android:hint="@string/Username"
+                    android:inputType="textPersonName"
                     android:paddingBottom="2dp"
-                    />
+                    android:textColor="#2fa881"
+                    android:textCursorDrawable="@drawable/bg_input_cursor"
+                    android:textSize="18sp" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
             <LinearLayout
@@ -76,18 +76,18 @@
                     android:textColorHint="#c5c5c5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <EditText
-                        android:textSize="18sp"
-                        android:hint="@string/Password"
-                        android:textColor="#2fa881"
-                        android:id="@+id/et_password"
+                        android:id="@+id/et_password1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
                         android:background="@drawable/selector_bg_edit"
-                        android:textCursorDrawable="@drawable/bg_input_cursor"
+                        android:hint="@string/Password"
+                        android:inputType="textPassword"
                         android:paddingBottom="2dp"
-                        />
+                        android:textColor="#2fa881"
+                        android:textCursorDrawable="@drawable/bg_input_cursor"
+                        android:textSize="18sp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
             <com.wang.avi.AVLoadingIndicatorView
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <Button
-                    android:id="@+id/bt_go"
+                    android:id="@+id/bt_go1"
                     android:background="@drawable/bt_shape"
                     android:stateListAnimator="@drawable/state_list_animator_z"
                     android:layout_width="150dp"
