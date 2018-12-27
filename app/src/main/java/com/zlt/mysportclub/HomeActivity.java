@@ -1,10 +1,8 @@
 package com.zlt.mysportclub;
 
-import android.app.Fragment;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
