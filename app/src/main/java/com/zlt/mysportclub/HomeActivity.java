@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -28,14 +31,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.bumptech.glide.Glide;
+import com.volokh.danylo.visibility_utils.calculator.DefaultSingleItemCalculatorCallback;
+import com.volokh.danylo.visibility_utils.calculator.ListItemsVisibilityCalculator;
+import com.volokh.danylo.visibility_utils.calculator.SingleListViewItemActiveCalculator;
+import com.volokh.danylo.visibility_utils.scroll_utils.RecyclerViewItemPositionGetter;
+import com.youth.banner.Banner;
 import com.zlt.mysportclub.database.TrainerRepo;
 import com.zlt.mysportclub.model.Trainer;
+import com.zlt.mysportclub.model.VideoListItem;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import cn.jzvd.Jzvd;
@@ -53,6 +68,17 @@ public class HomeActivity extends AppCompatActivity {
     private JzvdStd jzvdStd;
     private JzvdStd jzvdStd1;
     private JzvdStd jzvdStd2;
+    private JzvdStd jzvdStd3;
+    private JzvdStd jzvdStd4;
+    private Banner banner;
+    //设置图片资源:url或本地资源
+    String[] images= new String[] {
+            "http://pic40.photophoto.cn/20160715/1155115817271643_b.jpg",
+            "http://seopic.699pic.com/photo/50043/3085.jpg_wh1200.jpg",
+            "http://pic20.photophoto.cn/20110702/0009021158997269_b.jpg",
+            "http://imgsrc.baidu.com/imgad/pic/item/0df431adcbef760943acce6924dda3cc7dd99ea4.jpg",};
+    String[] titles=new String[]{"火热健身嗨翻全场","每天运动一小时","燃烧你的卡路里！!!","火热健身嗨翻全场"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +87,73 @@ public class HomeActivity extends AppCompatActivity {
         initUI();
 
         SDKInitializer.initialize(getApplicationContext());
-
-        //("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
-        //initVideo();
     }
 
-    private void initVideo(){
+    private void initBanner(View view)
+    {
+        banner = (Banner) view.findViewById(R.id.banner);
+
+        banner.setBannerStyle(Banner.CIRCLE_INDICATOR_TITLE);
+
+        banner.setIndicatorGravity(Banner.CENTER);
+
+        banner.setBannerTitle(titles);
+
+        //设置是否自动轮播（不设置则默认自动）
+        banner.isAutoPlay(true) ;
+
+        banner.setDelayTime(5000);
+
+        banner.setImages(images, new Banner.OnLoadImageListener() {
+            @Override
+            public void OnLoadImage(ImageView view, Object url) {
+                System.out.println("加载中");
+                Glide.with(getApplicationContext()).load(url).into(view);
+                System.out.println("加载完");
+            }
+        });
+        //设置点击事件，下标是从1开始
+        banner.setOnBannerClickListener(new Banner.OnBannerClickListener() {//设置点击事件
+            @Override
+            public void OnBannerClick(View view, int position) {
+                //Toast.makeText(getApplicationContext(), "你点击了：" + position, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void initVideo(View view){
+
+        jzvdStd = view.findViewById(R.id.videoplayer);
+        jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
+                , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+        jzvdStd1 = view.findViewById(R.id.videoplayer1);
+        jzvdStd1.setUp("http://vjs.zencdn.net/v/oceans.mp4"
+
+                , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+
+        jzvdStd2 = view.findViewById(R.id.videoplayer2);
+        jzvdStd2.setUp("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+                , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+        jzvdStd3= view.findViewById(R.id.videoplayer3);
+        jzvdStd3.setUp("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+                , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+        jzvdStd4 = view.findViewById(R.id.videoplayer4);
+        jzvdStd4.setUp("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+                , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
+        Uri uri = Uri.parse("D:\\Android_project\\MySportClub\\app\\src\\main\\res\\drawable\\tomas1.jpg");
+        try {
+            jzvdStd4.thumbImageView.setImageBitmap(getImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546000077941&di=3d3e185178e3e4d3834cca45e430e2f3&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F908fa0ec08fa513d08dda050376d55fbb3fbd9cd.jpg"));
+        }catch (Exception e)
+        {
+            System.out.print("load image error:"+e);
+        }
+    }
+
+    public static Bitmap getImage(String path) throws Exception{
+        URL url = new URL(path);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        InputStream is = conn.getInputStream();
+        return BitmapFactory.decodeStream(is);
     }
 
     private class MyCallBack implements SurfaceHolder.Callback {
@@ -233,23 +320,12 @@ public class HomeActivity extends AppCompatActivity {
                     final TextView t2 = (TextView) view.findViewById(R.id.dip_email);
                     t1.setText(String.format("zhang,litian"));
                     t2.setText(String.format("xxx@bjtu.edu.cn"));
-                    jzvdStd = view.findViewById(R.id.videoplayer);
-                    jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
-                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
-
-                    jzvdStd1 = view.findViewById(R.id.videoplayer1);
-                    jzvdStd1.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
-                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
-
-                    jzvdStd2 = view.findViewById(R.id.videoplayer2);
-                    jzvdStd2.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
-                            , "最燃烧运动", Jzvd.SCREEN_WINDOW_NORMAL);
-                    Uri uri = Uri.parse("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544527645995&di=de7a5e7a5bd0c08fe5b430aacfc92ffb&imgtype=0&src=http%3A%2F%2Fp1.img.cctvpic.com%2Fphotoworkspace%2Fcontentimg%2F2015%2F05%2F20%2F2015052009401236361.jpg");
-                    jzvdStd.thumbImageView.setImageURI(uri);
+                    initVideo(view);
                 }else if(position==3){
                     k=3;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp3, null, false);
+                    initBanner(view);
                 }else{
                     k=4;
                     view = LayoutInflater.from(

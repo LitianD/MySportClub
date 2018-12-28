@@ -9,4 +9,14 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="next">NEXT</string>
     <string name="register">REGISTER</string>
+
+    <string name="level_base_title"> 基础训练</string>
+    <string name="level_base_head">肌撕裂者 - 初级</string>
+    <string name="level_base_info">8分钟   40千卡   L1初级</string>
+    <string name="level_enhance_title"> 进击训练</string>
+    <string name="level_enhance_head">肌撕裂者 - 中级</string>
+    <string name="level_enhance_info">9分钟   60千卡   L3中级</string>
+    <string name="level_acme_title"> 魔鬼训练</string>
+    <string name="level_acme_head">肌撕裂者 - 极致</string>
+    <string name="level_acme_info">11分钟   100千卡   L5高级</string>
 </resources>
