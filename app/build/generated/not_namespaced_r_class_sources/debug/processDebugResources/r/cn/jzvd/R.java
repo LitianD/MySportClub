@@ -74,41 +74,41 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int back = 0x7f090027;
-        public static final int back_tiny = 0x7f090028;
-        public static final int battery_level = 0x7f09002c;
-        public static final int battery_time_layout = 0x7f09002d;
-        public static final int bottom_progress = 0x7f090031;
-        public static final int bottom_seek_progress = 0x7f090032;
-        public static final int brightness_progressbar = 0x7f090033;
-        public static final int clarity = 0x7f090045;
-        public static final int current = 0x7f09004e;
-        public static final int duration_image_tip = 0x7f090064;
-        public static final int duration_progressbar = 0x7f090065;
-        public static final int fullscreen = 0x7f090079;
-        public static final int jz_fullscreen_id = 0x7f09008d;
-        public static final int jz_tiny_id = 0x7f09008e;
-        public static final int layout_bottom = 0x7f090091;
-        public static final int layout_top = 0x7f090092;
-        public static final int loading = 0x7f090099;
-        public static final int replay_text = 0x7f0900bc;
-        public static final int retry_btn = 0x7f0900bd;
-        public static final int retry_layout = 0x7f0900be;
-        public static final int start = 0x7f0900e9;
-        public static final int start_layout = 0x7f0900ea;
-        public static final int surface_container = 0x7f0900ee;
-        public static final int thumb = 0x7f0900fd;
-        public static final int title = 0x7f090100;
-        public static final int total = 0x7f090105;
-        public static final int tv_brightness = 0x7f09010f;
-        public static final int tv_current = 0x7f090110;
-        public static final int tv_duration = 0x7f090111;
-        public static final int tv_volume = 0x7f090112;
-        public static final int video_current_time = 0x7f090118;
-        public static final int video_item = 0x7f090119;
-        public static final int video_quality_wrapper_area = 0x7f09011a;
-        public static final int volume_image_tip = 0x7f090123;
-        public static final int volume_progressbar = 0x7f090124;
+        public static final int back = 0x7f090022;
+        public static final int back_tiny = 0x7f090023;
+        public static final int battery_level = 0x7f090027;
+        public static final int battery_time_layout = 0x7f090028;
+        public static final int bottom_progress = 0x7f09002c;
+        public static final int bottom_seek_progress = 0x7f09002d;
+        public static final int brightness_progressbar = 0x7f09002e;
+        public static final int clarity = 0x7f090040;
+        public static final int current = 0x7f090049;
+        public static final int duration_image_tip = 0x7f09005f;
+        public static final int duration_progressbar = 0x7f090060;
+        public static final int fullscreen = 0x7f090074;
+        public static final int jz_fullscreen_id = 0x7f090088;
+        public static final int jz_tiny_id = 0x7f090089;
+        public static final int layout_bottom = 0x7f09008c;
+        public static final int layout_top = 0x7f09008d;
+        public static final int loading = 0x7f090094;
+        public static final int replay_text = 0x7f0900b7;
+        public static final int retry_btn = 0x7f0900b8;
+        public static final int retry_layout = 0x7f0900b9;
+        public static final int start = 0x7f0900e4;
+        public static final int start_layout = 0x7f0900e5;
+        public static final int surface_container = 0x7f0900e9;
+        public static final int thumb = 0x7f0900f7;
+        public static final int title = 0x7f0900fa;
+        public static final int total = 0x7f0900ff;
+        public static final int tv_brightness = 0x7f090109;
+        public static final int tv_current = 0x7f09010a;
+        public static final int tv_duration = 0x7f09010b;
+        public static final int tv_volume = 0x7f09010c;
+        public static final int video_current_time = 0x7f090112;
+        public static final int video_item = 0x7f090113;
+        public static final int video_quality_wrapper_area = 0x7f090114;
+        public static final int volume_image_tip = 0x7f09011d;
+        public static final int volume_progressbar = 0x7f09011e;
     }
     public static final class layout {
         private layout() {}

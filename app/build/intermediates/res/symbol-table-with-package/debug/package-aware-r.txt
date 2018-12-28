@@ -1660,13 +1660,8 @@ drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable white_radius
 id ALT
-id Baseball
-id Basketball
-id Bowling
-id Boxing
 id CTRL
 id FUNCTION
-id Football
 id META
 id RelativeLayout
 id SHIFT
@@ -1902,7 +1897,6 @@ id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
-id tennis
 id text
 id text2
 id textSpacerNoButtons
