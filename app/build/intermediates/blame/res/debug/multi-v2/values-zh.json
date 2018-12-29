@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Android_project\\MySportClub\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
+            "outputFile": "C:\\Users\\Administrator\\Documents\\GitHub\\MySportClub\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
             "map": [
                 {
-                    "source": "D:\\Android\\.gradle\\caches\\transforms-1\\files-1.1\\jiaozivideoplayer-6.3.1.aar\\eecefb5d3845c3a1136f7d2e7b348668\\res\\values-zh\\values-zh.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\jiaozivideoplayer-6.3.1.aar\\cdbdfa4ad4996551044eb20f71e4065e\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

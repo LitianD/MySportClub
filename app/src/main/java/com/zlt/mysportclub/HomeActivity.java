@@ -2,6 +2,7 @@ package com.zlt.mysportclub;
 
 import android.app.Fragment;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -56,6 +58,8 @@ import java.util.Random;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import devlight.io.library.ntb.NavigationTabBar;
+
+import static cn.bmob.newim.core.BmobIMClient.getContext;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -330,6 +334,22 @@ public class HomeActivity extends AppCompatActivity {
                     k=4;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
+                    LinearLayout about;
+                    about = (LinearLayout) view.findViewById(R.id.user_about);
+                    about.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Context context = getContext();
+                            android.app.AlertDialog alertDialog1 = new android.app.AlertDialog.Builder(context)
+                                    .setTitle("关于")//标题
+                                    .setMessage("移动应用开发课最终答辩项目：sportclub\n" +
+                                            "组员：张力天，朱子潇，莫日根呼\n" +
+                                            "所用时间：16weeks\n" +
+                                            "版本号：5.0")//内容
+                                    .create();
+                            alertDialog1.show();
+                        }
+                    });
                 }
 //                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
 //                txtPage.setText(String.format("Page #%d", position));

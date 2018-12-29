@@ -200,5 +200,7 @@
     <color name="font_gray">#ff888888</color>
     <color name="my_personal_bg">#fff3f4f6</color>
     <color name="layout_bg_color">@color/my_personal_bg</color>
-
+    <!-- 描边颜色 -->
+    <color name="border_clo">#ccc</color>
+    <color name="text_clo">#333</color>
 </resources>

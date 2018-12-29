@@ -649,6 +649,7 @@ color bisque
 color blanchedalmond
 color blue
 color blueviolet
+color border_clo
 color bottom_bg
 color bottom_tab_normal
 color bottom_tab_pressed
@@ -910,6 +911,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tan
 color teal
+color text_clo
 color thistle
 color title_bg
 color title_bg_blue
@@ -1535,13 +1537,19 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable about
+drawable area
 drawable avd_hide_password
 drawable avd_show_password
 drawable bg
 drawable bg_input_cursor
 drawable bg_input_cursor_2
+drawable bg_layout_shape
 drawable bg_round_rect
 drawable black_background
+drawable bottom_layout_selector
+drawable bottom_select
+drawable bottom_unselect
 drawable bt_shape
 drawable bt_shape_2
 drawable design_bottom_navigation_item_background
@@ -1576,10 +1584,12 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_second
+drawable ic_settings_black_24dp
 drawable ic_seventh
 drawable ic_sixth
 drawable ic_third
 drawable icon_add
+drawable img_error
 drawable jz_add_volume
 drawable jz_back_normal
 drawable jz_back_pressed
@@ -1629,6 +1639,7 @@ drawable level_acme
 drawable level_base
 drawable level_enhance
 drawable loading_bg
+drawable mid_layout_selector
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1649,6 +1660,10 @@ drawable plus_x
 drawable retry_bg
 drawable selector_bg_edit
 drawable selector_bg_edit_2
+drawable setting_arrow
+drawable single_layout_selector
+drawable single_select
+drawable single_unselect
 drawable sport
 drawable sport1
 drawable state_list_animator_z
@@ -1658,6 +1673,10 @@ drawable tomas2
 drawable tomas3
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable top_layout_selector
+drawable top_select
+drawable top_unselect
+drawable touxiang
 drawable white_radius
 id ALT
 id CTRL
@@ -1690,6 +1709,7 @@ id add
 id alertTitle
 id all
 id always
+id area
 id async
 id auto
 id avi
@@ -1786,6 +1806,10 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageView
+id imageView10
+id imageView7
+id imageView9
 id image_random
 id indicator
 id info
@@ -1870,6 +1894,7 @@ id search_voice_btn
 id seekBar2
 id select_dialog_listview
 id selected
+id share
 id shortcut
 id showCustom
 id showHome
@@ -1933,6 +1958,10 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id user_about
+id user_id
+id user_name
+id user_setting
 id video_current_time
 id video_item
 id video_quality_wrapper_area
@@ -2144,6 +2173,7 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style AppTheme
+style AppTheme_Button
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -2637,8 +2667,17 @@ style Widget_MaterialComponents_TextInputLayout_OutlinedBox
 style Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense
 style Widget_MaterialComponents_Toolbar
 style Widget_Support_CoordinatorLayout
+style base_layout
+style bg_line
+style bottom_layout
+style img_arrow
 style jz_popup_toast_anim
 style jz_style_dialog_progress
+style mid_layout
+style single_layout
+style top_layout
+style usertext
+style wrap_layout
 styleable AVLoadingIndicatorView indicatorColor indicatorName maxHeight maxWidth minHeight minWidth
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
