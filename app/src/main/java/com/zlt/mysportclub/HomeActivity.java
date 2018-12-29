@@ -37,6 +37,11 @@ import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.bumptech.glide.Glide;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.volokh.danylo.visibility_utils.calculator.DefaultSingleItemCalculatorCallback;
 import com.volokh.danylo.visibility_utils.calculator.ListItemsVisibilityCalculator;
 import com.volokh.danylo.visibility_utils.calculator.SingleListViewItemActiveCalculator;
@@ -334,7 +339,36 @@ public class HomeActivity extends AppCompatActivity {
                     k=4;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
-                    LinearLayout about;
+                    LinearLayout about,share;
+                    share=(LinearLayout) view.findViewById(R.id.share);
+                    share.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            final String[] items3 = new String[]{"QQ分享", "QQ空间分享"};//创建item
+                            AlertDialog alertDialog3 = new AlertDialog.Builder(HomeActivity.this)
+                                    .setTitle("选择您的分享")
+                                    .setItems(items3, new DialogInterface.OnClickListener() {//添加列表
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            if(i==0){
+                                                onClickShare();
+                                            }
+                                            if(i==1){
+                                                shareToQQzone();
+                                            }
+                                            Toast.makeText(HomeActivity.this, "点的是：" + items3[i] + i, Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加取消
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Toast.makeText(HomeActivity.this, "这是取消按钮", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .create();
+                            alertDialog3.show();
+                        }
+                    });
                     about = (LinearLayout) view.findViewById(R.id.user_about);
                     about.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -443,6 +477,65 @@ public class HomeActivity extends AppCompatActivity {
 //        JzvdStd jzvdStd = (JzvdStd) findViewById(R.id.videoplayer);
 //        jzvdStd.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
 //                , "饺子闭眼睛", Jzvd.SCREEN_WINDOW_NORMAL);
+    }
+
+
+    //qq分享
+    private void onClickShare() {
+        final Bundle params = new Bundle();
+        params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE,
+                QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
+        params.putString(QQShare.SHARE_TO_QQ_TITLE, "要分享的标题");
+        params.putString(QQShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");
+        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL,
+                "http://blog.csdn.net/DickyQie/article/list/1");
+        params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL,
+                "http://imgcache.qq.com/qzone/space_item/pre/0/66768.gif");
+        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "切切歆语");
+        params.putString(QQShare.SHARE_TO_QQ_EXT_INT, "其他附加功能");
+        Tencent mTencent = Tencent.createInstance("1108071510",
+                HomeActivity.this);
+        mTencent.shareToQQ(HomeActivity.this, params, new BaseUiListener1());
+    }
+    //回调接口  (成功和失败的相关操作)
+    private class BaseUiListener1 implements IUiListener {
+        @Override
+        public void onComplete(Object response) {
+            doComplete(response);
+        }
+
+        protected void doComplete(Object values) {
+        }
+
+        @Override
+        public void onError(UiError e) {
+        }
+
+        @Override
+        public void onCancel() {
+        }
+    }
+
+    private void shareToQQzone() {
+        try {
+            final Bundle params = new Bundle();
+            params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,
+                    QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+            params.putString(QzoneShare.SHARE_TO_QQ_TITLE, "完美天气");
+            params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "sss");
+            params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL,
+                    "http://blog.csdn.net/DickyQie/article/list/1");
+            ArrayList<String> imageUrls = new ArrayList<String>();
+            imageUrls.add("http://media-cdn.tripadvisor.com/media/photo-s/01/3e/05/40/the-sandbar-that-links.jpg");
+            params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrls);
+            params.putInt(QzoneShare.SHARE_TO_QQ_EXT_INT,
+                    QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
+            Tencent mTencent = Tencent.createInstance("1108071510",
+                    HomeActivity.this);
+            mTencent.shareToQzone(HomeActivity.this, params,
+                    new BaseUiListener1());
+        } catch (Exception e) {
+        }
     }
 
     @Override

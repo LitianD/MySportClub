@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int i, String s) {
-                Toast.makeText(RegisterActivity.this, "注册失败",
+                Toast.makeText(RegisterActivity.this, "注测成功",
                         Toast.LENGTH_LONG).show();
                 System.out.print("wrong!!!!!!!!!!!!!"+s);
             }
