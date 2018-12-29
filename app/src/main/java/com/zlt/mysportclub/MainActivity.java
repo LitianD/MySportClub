@@ -115,12 +115,20 @@ public class MainActivity extends AppCompatActivity {
         btGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                Bundle bundle = new Bundle();
+                String username = Username.getText().toString();
+                String userid = username + "198650";
+                bundle.putString("username",username);
+                bundle.putString("userid",userid);
+                intent.putExtras(bundle);
                 Explode explode = new Explode();
                 explode.setDuration(500);
                 getWindow().setExitTransition(explode);
                 getWindow().setEnterTransition(explode);
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this);
                 Intent i2 = new Intent(MainActivity.this, HomeActivity.class);
+                i2.putExtras(bundle);
                 startActivity(i2, oc2.toBundle());
             }
         });

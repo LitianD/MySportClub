@@ -80,6 +80,9 @@ public class HomeActivity extends AppCompatActivity {
     private JzvdStd jzvdStd3;
     private JzvdStd jzvdStd4;
     private Banner banner;
+
+    String username;
+    String userid;
     //设置图片资源:url或本地资源
     String[] images= new String[] {
             "http://pic40.photophoto.cn/20160715/1155115817271643_b.jpg",
@@ -87,14 +90,14 @@ public class HomeActivity extends AppCompatActivity {
             "http://pic20.photophoto.cn/20110702/0009021158997269_b.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/0df431adcbef760943acce6924dda3cc7dd99ea4.jpg",};
     String[] titles=new String[]{"火热健身嗨翻全场","每天运动一小时","燃烧你的卡路里！!!","火热健身嗨翻全场"};
-
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initUI();
-
+        bundle = this.getIntent().getExtras();
         SDKInitializer.initialize(getApplicationContext());
     }
 
@@ -234,6 +237,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initUI() {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.vp_horizontal_ntb);
+
+
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -336,9 +341,18 @@ public class HomeActivity extends AppCompatActivity {
                             getBaseContext()).inflate(R.layout.item_vp3, null, false);
                     initBanner(view);
                 }else{
+
                     k=4;
                     view = LayoutInflater.from(
                             getBaseContext()).inflate(R.layout.item_vp4, null, false);
+                    TextView tv1 = view.findViewById(R.id.user_name);
+                    TextView tv2 = view.findViewById(R.id.user_id);
+                    if(bundle!=null){
+                        username = bundle.getString("username").toString();
+                        userid = bundle.getString("userid").toString();
+                        tv1.setText(username);
+                        tv2.setText(userid);
+                    }
                     LinearLayout about,share;
                     share=(LinearLayout) view.findViewById(R.id.share);
                     share.setOnClickListener(new View.OnClickListener() {

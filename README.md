@@ -13,10 +13,16 @@
 ## 1.登陆注册
 + MaterialDesign UI空间
 + Bomb后端
-![](/screenShot/login.gif)
+  ![](/screenShot/login.gif)
+
+![](\screenShot\login1.gif)
+
+![](\screenShot\login2.gif)
+
 ## 2.主页展示
+
 + ListView布局
-+ CardView布局
++ CardView布局![]()
 + imageView图片轮播
 ![](/screenShot/homePage.gif)
 ## 3.地图API接入
