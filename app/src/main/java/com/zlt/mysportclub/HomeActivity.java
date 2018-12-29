@@ -339,8 +339,7 @@ public class HomeActivity extends AppCompatActivity {
                     about.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Context context = getContext();
-                            android.app.AlertDialog alertDialog1 = new android.app.AlertDialog.Builder(context)
+                            android.app.AlertDialog alertDialog1 = new android.app.AlertDialog.Builder(HomeActivity.this)
                                     .setTitle("关于")//标题
                                     .setMessage("移动应用开发课最终答辩项目：sportclub\n" +
                                             "组员：张力天，朱子潇，莫日根呼\n" +
@@ -351,27 +350,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     });
                 }
-//                final TextView txtPage = (TextView) view.findViewById(R.id.txt_vp_item_page);
-//                txtPage.setText(String.format("Page #%d", position));
-                Random random = new Random();
-                rand_img = random.nextInt(4);
 
-//                final ImageView img = (ImageView) view.findViewById(R.id.image_random);
-//                img = (ImageView) view.findViewById(R.id.image_random);
-//                if(position==1){
-//                    if(rand_img==0) {
-//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas0));
-//                    }
-//                    if(rand_img==1) {
-//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas1));
-//                    }
-//                    if(rand_img==2) {
-//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas2));
-//                    }
-//                    if(rand_img==3) {
-//                        img.setImageDrawable(getResources().getDrawable(R.drawable.tomas3));
-//                    }
-//                }
                 container.addView(view);
                 return view;
             }
