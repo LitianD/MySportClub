@@ -50,4 +50,4 @@
 + QQ登陆
 
 ![](/screenShot/user.gif)
-
+![](/screenShot/user1.gif)
