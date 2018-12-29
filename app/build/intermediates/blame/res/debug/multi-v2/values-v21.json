@@ -1,46 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Administrator\\Documents\\GitHub\\MySportClub\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "D:\\Android_project\\MySportClub\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\material-sheet-fab-1.2.1.aar\\000a1481cbb20373efb1f0af3022c07d\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "216",
-                        "endColumns": "99",
-                        "endOffsets": "311"
-                    },
-                    "to": {
-                        "startLines": "6",
-                        "startColumns": "4",
-                        "startOffsets": "354",
-                        "endColumns": "99",
-                        "endOffsets": "449"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\10ef756832e6413753892171326df043\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,13",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
-                        "endLines": "2,3,4,5,6,7,8,9,12,17",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,264,265,266,267,300,303",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,223,290,19362,19478,19604,19730,21571,21743",
-                        "endLines": "2,3,4,5,264,265,266,267,302,307",
-                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
-                        "endOffsets": "154,218,285,349,19473,19599,19725,19853,21738,22076"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\b7ac0574778a5400f1bb503fbfed4095\\res\\values-v21\\values-v21.xml",
+                    "source": "D:\\Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\f8e12f044c1f47d2c5dc42c70cf16d7f\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,107,110,154,157,160,162,164,166,169,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,221,222,223,233,234,235,247",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -59,7 +23,43 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\39783627095d231b0637bf6c387d7974\\res\\values-v21\\values-v21.xml",
+                    "source": "D:\\Android\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\e5ed92f99959cb0367879103e0db098e\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
+                        "endLines": "2,3,4,5,6,7,8,9,12,17",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,264,265,266,267,300,303",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,19362,19478,19604,19730,21571,21743",
+                        "endLines": "2,3,4,5,264,265,266,267,302,307",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,19473,19599,19725,19853,21738,22076"
+                    }
+                },
+                {
+                    "source": "D:\\Android\\.gradle\\caches\\transforms-1\\files-1.1\\material-sheet-fab-1.2.1.aar\\c401c70f512f253d575237d575cd2d67\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "216",
+                        "endColumns": "99",
+                        "endOffsets": "311"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "354",
+                        "endColumns": "99",
+                        "endOffsets": "449"
+                    }
+                },
+                {
+                    "source": "D:\\Android\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\d0513b19743e21dd79f066000cb1db0e\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,10,18,26",
                         "startColumns": "4,4,4,4",
