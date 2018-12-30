@@ -70,5 +70,5 @@
 
 <div align="center">
 <img src="/screenShot/user1.gif" height="500" width="300" >
-<img src="/screenShot/user1.gif" height="500" width="300" >
+<img src="/screenShot/user.gif" height="500" width="300" >
 </div>
